@@ -7,7 +7,6 @@ import { viz_1_2 } from "./1_2.js";
 import { viz_1_3 } from "./1_3.js";
 import { viz_1_5 } from "./1_5.js";
 import { chartmetric_circlepack } from './chartmetric_circlepack.js';
-import { viz_2_5 } from './2_5.js';
 import { viz_2_2 } from "./2_2.js";
 import { viz_2_3 } from "./2_3.js";
 import { viz_2_6 } from "./2_6.js";
@@ -66,27 +65,6 @@ import { viz_2_19 } from "./2_19.js";
             pending_data_update: false,
             options: {
                 selector: "viz_1_3",
-            },
-            params: [],
-            update: function (param) {
-                if (param !== undefined && param !== null) {
-                    this.viz.update(null, param);
-                } else {
-                    this.viz.update(this.data);
-                }
-            },
-        },
-        viz_1_4: {
-            viz: null,
-            data: [],
-            pending_data_update: false,
-            options: {
-                selector: "#viz_1_4",
-            },
-            mapping: {
-                source: "SOURCE",
-                target: "TARGET",
-                value: "VALUE",
             },
             params: [],
             update: function (param) {
@@ -194,42 +172,6 @@ import { viz_2_19 } from "./2_19.js";
                     this.viz.update(null, param);
                 } else {
                     this.viz.update(this.data);
-                }
-            },
-        },
-        viz_2_5: {
-            viz: null,
-            data: [],
-            pending_data_update: false,
-            options: {
-                selector: "#viz_2_5",
-            },
-            params: [
-                { bar: "end_total", arc: { focus: null, opacity: 0 } },
-                { bar: "end_total", arc: { focus: null, opacity: 0.03 } },
-                { bar: "Undiscovered", arc: { focus: "Undiscovered", opacity: 0.03 } },
-                { bar: "Developing", arc: { focus: "Developing", opacity: 0.03 } },
-                { bar: "Mid-Level", arc: { focus: "Mid-Level", opacity: 0.03 } },
-                { bar: "Mainstream", arc: { focus: "Mainstream", opacity: 0.03 } },
-                { bar: "Superstar", arc: { focus: "Superstar", opacity: 0.03 } },
-                { bar: "Legendary", arc: { focus: "Legendary", opacity: 0.03 } },
-            ],
-            update: function (param) {
-                // expects an object with 'bar' & 'arc' keys
-                if (param !== undefined && param !== null) {
-                    if (param.hasOwnProperty("bar")) {
-                        this.viz.bar.update(null, { y: param.bar }, { focus: param.arc.focus });
-                    } else {
-                        this.viz.bar.update(this.data);
-                    }
-
-                    if (param.hasOwnProperty("arc")) {
-                        this.viz.arc.update(null, { focus: param.arc.focus }, { opacity: param.arc.opacity });
-                    } else {
-                        this.viz.arc.update(this.data);
-                    }
-                } else {
-                    this.viz.bar.update(this.data);
                 }
             },
         },
@@ -652,14 +594,6 @@ import { viz_2_19 } from "./2_19.js";
                             visuals.viz_1_3.viz = viz_1_3(
                                 visuals.viz_1_3.data,
                                 visuals.viz_1_3.options.selector
-                            );
-                            observer.disconnect();
-                        }
-                        if (viz == "viz_1_4") {
-                            visuals.viz_1_4.viz = chartmetric_sankey(
-                                visuals.viz_1_4.data,
-                                visuals.viz_1_4.mapping,
-                                visuals.viz_1_4.options
                             );
                             observer.disconnect();
                         }
